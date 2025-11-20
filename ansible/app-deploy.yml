@@ -27,7 +27,7 @@
           PORT=5000
 
     - name: Start backend using PM2
-      shell: pm2 index.js --name travel-api
+      shell: pm2 start index.js --name travel-api
       args:
         chdir: /opt/travelmemory/backend
 

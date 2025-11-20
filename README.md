@@ -8,7 +8,7 @@ Part 1: Infrastructure Setup with Terraform
    - Initialize a new Terraform project targeting AWS. 
    use command terraform init to initalize teh terraform
 
-2. VPC and Network Configuration:
+2. VPC and Network Configuration: terraform plan followed by terraform apply --auto-approval
 
    - Create an AWS VPC with two subnets: one public and one private. 
    - Set up an Internet Gateway and a NAT Gateway. 
@@ -29,7 +29,8 @@ Part 1: Infrastructure Setup with Terraform
 
 4. Security Groups and IAM Roles:
 
-   - Create necessary security groups for web and database servers.
+   - Create necessary security groups for web and database servers. added 5000/3000 for the applcation acess , for the private instance allowed 22 within same security group only from public instance though key.
+   
 ![alt text](image/sg.png)
 
 
@@ -56,25 +57,27 @@ Test the connectivity of both web and DB server from ansible master node
 
 2. Web Server Setup by installing the depedecy and applcation 
 
-
+![alt text](image/web-depedency-node-pm2.png)
 
 3. Database Server Setup:
+   Refer db.yml for more details 
+  ![alt text](image/Dbinstallation.png)
 
-  
-
-   - Secure the MongoDB instance and create necessary users and databases.
-
+ 
 4. Application Deployment:
+   
+    Refer app-deploy.yml for all details
 
-   - Configure environment variables and start the Node.js application.
+![alt text](image/applicationDeployment.png)
+     ![alt text](image/frontendWorkingFine.png)
 
-   - Ensure the React frontend communicates with the Express backend.
-
+![alt text](image/backendworkingfine.png)
 5. Security Hardening:
 
-   - Harden the security by configuring firewalls and security groups.
+   SSH only allowed from the ips in the same VPC and same security group. DB accessbile only from the same security group only not allowed from public.
 
-   - Implement additional security measures as needed (e.g., SSH key pairs, disabling root login).
+Common command used are
+ansible-playbook -i hosts.ini <playbook name>
 
 
 
