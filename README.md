@@ -1,4 +1,4 @@
-# terraform-demo
+# Creating infrastructure by Terraform and deploying MERN application by ansible
 Part 1: Infrastructure Setup with Terraform
 
 1. AWS Setup and Terraform Initialization:
@@ -8,7 +8,7 @@ Part 1: Infrastructure Setup with Terraform
    - Initialize a new Terraform project targeting AWS. 
    use command terraform init to initalize teh terraform
 
-2. VPC and Network Configuration: terraform plan followed by terraform apply --auto-approval
+2. VPC and Network Configuration: terraform plan followed by terraform apply --auto-approval inside tfcode folder 
 
    - Create an AWS VPC with two subnets: one public and one private. 
    - Set up an Internet Gateway and a NAT Gateway. 
