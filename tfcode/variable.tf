@@ -22,12 +22,12 @@ variable "allowed_ssh_cidr" {
 
 variable "instance_type_web" {
   type    = string
-  default = "t3.micro"
+  default = "t3.medium"
 }
 
 variable "instance_type_db" {
   type    = string
-  default = "t3.micro"
+  default = "t3.medium"
 }
 variable "ami_id" {
   description = "AMI ID for EC2 instances"
