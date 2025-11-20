@@ -1,0 +1,26 @@
+- name: Setup MongoDB on DB Server
+  hosts: db
+  become: yes
+  tasks:
+    - name: Install MongoDB
+      apt:
+        name: mongodb
+        state: present
+        update_cache: yes
+
+    - name: Enable & start MongoDB
+      systemd:
+        name: mongodb
+        state: started
+        enabled: yes
+
+    - name: Bind MongoDB to private IP only
+      lineinfile:
+        path: /etc/mongodb.conf
+        regexp: '^bind_ip ='
+        line: "bind_ip = 127.0.0.1,{{ ansible_default_ipv4.address }}"
+
+    - name: Restart MongoDB
+      systemd:
+        name: mongodb
+        state: restarted

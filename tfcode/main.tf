@@ -1,0 +1,24 @@
+module "vpc" {
+  source   = "./modules/vpc"
+  name     = "vk-ft"
+  vpc_cidr = var.vpc_cidr
+}
+
+module "iam" {
+  source = "./modules/iam"
+  name   = "vk-ft"
+}
+
+module "ec2" {
+  source            = "./modules/ec2"
+  name              = "vk-ft"
+  vpc_id            = module.vpc.vpc_id
+  public_subnet_id  = module.vpc.public_subnet_id
+  private_subnet_id = module.vpc.private_subnet_id
+  ami_id            = var.ami_id
+  key_name          = var.key_name
+  allowed_ssh_cidr  = var.allowed_ssh_cidr
+  instance_type_web = var.instance_type_web
+  instance_type_db  = var.instance_type_db
+  iam_instance_profile = module.iam.ec2_instance_profile_name
+}

@@ -1,0 +1,19 @@
+- name: Setup Node & dependencies
+  hosts: web
+  become: yes
+  tasks:
+    - name: Install packages
+      apt:
+        name: ["git", "curl"]
+        update_cache: yes
+        state: present
+
+    - name: Install NodeJS 18
+      shell: |
+        curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+        apt install -y nodejs
+
+    - name: Install PM2 for process management
+      npm:
+        name: pm2
+        global: yes
