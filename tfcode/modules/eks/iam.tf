@@ -94,7 +94,7 @@ data "aws_iam_policy_document" "vpc_cni_assume_role_policy" {
 
 resource "aws_iam_role" "vpc_cni" {
   assume_role_policy = data.aws_iam_policy_document.vpc_cni_assume_role_policy.json
-  name               = var.vpc_cni_role_name
+  name = "${var.cluster_name}-VPC_CNI_Role"
 }
 
 resource "aws_iam_role_policy_attachment" "vpc_cni" {
@@ -130,7 +130,8 @@ data "aws_iam_policy_document" "ebs_csi_assume_role_policy" {
 
 resource "aws_iam_role" "ebs_csi" {
   assume_role_policy = data.aws_iam_policy_document.ebs_csi_assume_role_policy.json
-  name               = "AmazonEKS_EBS_CSI_DriverRole"
+   name = "${var.cluster_name}-EBS_CSI_DriverRole"
+  
 }
 
 resource "aws_iam_role_policy_attachment" "ebs_csi" {
@@ -144,7 +145,8 @@ resource "aws_iam_role_policy_attachment" "ebs_csi" {
 # IAM role and policy for AWS Load Balancer Controller
 
 resource "aws_iam_policy" "aws_load_balancer_controller_policy" {
-  name   = "aws-lbc-policy-vijay-02"
+
+  name = "${var.cluster_name}-aws-lbc-policy"
   policy = file("${path.module}/policies/aws_load_balancer_controller_policy.json")
 }
 
@@ -174,7 +176,7 @@ data "aws_iam_policy_document" "aws_load_balancer_controller_role_policy" {
 
 resource "aws_iam_role" "aws_load_balancer_controller" {
   assume_role_policy = data.aws_iam_policy_document.aws_load_balancer_controller_role_policy.json
-  name               = var.aws_lbc_role_name
+  name = "${var.cluster_name}-aws-load-balancer-controller-role"
 }
 
 resource "aws_iam_role_policy_attachment" "aws_load_balancer_controller_policy" {

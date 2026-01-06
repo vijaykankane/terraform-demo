@@ -28,13 +28,3 @@ variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
 }
-
-variable "vpc_cni_role_name" {
-  description = "VPC CNI Role Name"
-  type        = string
-}
-
-variable "aws_lbc_role_name" {
-  description = "AWS Load Balancer controller Role Name"
-  type        = string
-}

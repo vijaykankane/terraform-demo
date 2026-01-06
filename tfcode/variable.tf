@@ -54,13 +54,3 @@ variable "eks_cluster_version" {
   type        = string
   default     = "1.34"
 }
-variable "vpc_cni_role_name" {
-  description = "VPC CNI role name"
-  type        = string
-  default     = "AmazonEKSVPCCNIRole-vijay"
-}
-variable "aws_lbc_role_name" {
-  description = "AWS Load Balancer Controller role name"
-  type        = string
-  default     = "aws-lbc-vijay-01"
-}

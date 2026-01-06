@@ -29,8 +29,6 @@ module "eks" {
   cluster_version   = var.eks_cluster_version
   vpc_id            = module.vpc.vpc_id
   subnet_ids        = [module.vpc.private_subnet_id_0, module.vpc.private_subnet_id_1]
-  vpc_cni_role_name = var.vpc_cni_role_name
-  aws_lbc_role_name = var.aws_lbc_role_name
   tags              = var.tags
   region            = var.aws_region
   
